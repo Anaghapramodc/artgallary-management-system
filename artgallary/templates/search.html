@@ -1,0 +1,70 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+             h3 {
+            font-size:54px;
+            color: red;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+
+        }
+
+        h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ff0000;
+            opacity: 0.5;
+            animation: shining 2s infinite;
+        }
+
+        @keyframes shining {
+            0% {
+                opacity: 0.5;
+                transform: scaleX(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleX(1.5);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scaleX(1);
+            }
+        }
+         h4 {
+            font-size:54px;
+            color: red;
+            font-weight: bold;
+            position: relative;
+
+
+        }
+    </style>
+</head>
+<body>
+<h3 class=" 'text-secondary"> Search Result</h3><hr>
+{% for every in object_list %}
+<div>
+    <h4><a href="{% url 'art-view' every.pk%}"> {{every.Painting_name}}</a></h4>
+
+</div>
+
+
+{% endfor %}
+
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h2 {
+            font-size: 54px;
+            color: red;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+
+        .button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+<div class="card-body">
+    <form action="" method="post">
+        {% csrf_token %}
+        <center>
+            <h2>Are you sure you want to delete "{{ artist_sell }}"?</h2>
+            <div>
+                <button class="button" type="submit">Delete</button>
+                <a href="{% url 'art-list' %}"><button class="button" type="button">Cancel</button></a>
+            </div>
+        </center>
+    </form>
+</div>
+</body>
+</html>
+
+{% endblock content %}

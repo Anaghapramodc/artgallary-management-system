@@ -1,0 +1,117 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .empty {
+            background-color: white;
+            width: 500px;
+            height: 60px;
+            padding: 5px;
+            border: 3px solid white;
+            margin: 0;
+        }
+
+        .image {
+            padding: 3px;
+            width: 100px;
+            height: 100px;
+        }
+
+        h2 {
+            color: red;
+            font-family: arial, sans-serif;
+            font-size: 75px;
+            font-weight: bold;
+            margin-top: 0px;
+            margin-bottom: 1px;
+        }
+
+        .button {
+            background-color:red;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        h3{
+            color: red;
+            font-family: arial, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 0px;
+            margin-bottom: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <center>
+        <h2>My Cart</h2>
+    </center>
+    {% if cart_items %}
+        <ul class="list-group">
+            {% if cart_items|length == 0 %}
+
+                            <center>
+                                <h3>Your cart is Empty</h3>
+                                <p><a href="{% url 'art-list' %}" class="button">Continue Shopping</a></p>
+                            </center>
+
+            {% else %}
+                            <center><a href="{% url 'art-list' %}" class="button">Continue Shopping</a></center>
+                {% for cart_item in cart_items %}
+                     {% if cart_items|length != 0 %}
+                    <div class="card-body" style="width: 30%; margin-left: 15%; margin-top: 2%;">
+                        <div class="card mb-3" style="height:300px; width: 940px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ cart_item.painting_name.image_url.url }}" class="img-fluid rounded-start" alt="{{ cart_item.painting_name.painting_name }}" style="height:300px; width: 740px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ cart_item.painting_name.painting_name }}</h5>
+                                        <p>Price: {{ cart_item.painting_name.price }} per painting</p>
+                                        <p>Quantity: {{ cart_item.quantity }}</p>
+                                        <p>Total price: {{ cart_item.total_price }}</p>
+                                       <a class=" button btn btn-outline-danger" href="{% url 'remove_from_cart' art_id=cart_item.painting_name.id %}" onclick="alert('Item removed from cart')" style="size:20px;">Remove from cart</a>
+                                        <a href="{% url 'buy' user=cart_item.painting_name.user pk=cart_item.painting_name.id %}"  class=" button btn btn-outline-danger" style="size:20px;">Buy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+        </ul>
+    {% else %}
+
+                    <center>
+                        <br>
+                        <h3>Your cart is Empty</h3>
+                        <br>
+                        <p><a href="{% url 'art-list' %}" class="button">Continue Shopping</a></p>
+                    </center>
+
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{% endblock content %}

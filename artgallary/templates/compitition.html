@@ -1,0 +1,33 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h2 {
+  font-size: 60px;
+   color: red;
+  text-shadow: 2px 2px white;
+}
+    </style>
+</head>
+<body>
+<h2>tell us what artworks would you like to do?</h2>
+{%for c in compitition %}
+
+
+
+    <h3><a href="{% url 'artwork-teams' c.id %}"> {{c.artwork}}</a></h3>
+
+
+{% endfor %}
+
+
+</body>
+</html>
+{% endblock content %}

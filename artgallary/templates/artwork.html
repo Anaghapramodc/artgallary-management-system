@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+               h2 {
+  font-size: 60px;
+   color: red;
+  text-shadow: 2px 2px white;
+}
+   h3{
+   font-size: 30px;
+   }
+    </style>
+</head>
+<body>
+<div class="card-body" style="width: 80%; margin-left: 20%; margin-top: 1%;">
+
+      <div class="card-body">
+          <h2>select your topic</h2>
+          <h3><a href="{% url 'practise' %}"> {{object.team1}}</a></h3>
+    <h3><a href="{% url 'practise' %}">{{object.team2}}</a></h3>
+    <h3><a href="{% url 'practise' %}">{{object.team3}}</a></h3>
+    <h3><a href="{% url 'practise' %}"> {{object.team4}}</a></h3>
+    <h3><a href="{% url 'practise' %}"> {{object.team5}}</a></h3>
+    <h3><a href="{% url 'practise' %}">{{object.team6}}</a></h3>
+    <h3><a href="{% url 'practise' %}"> {{object.team7}}</a></h3>
+    <h3><a href="{% url 'practise' %}">{{object.team8}}</a></h3>
+    </div>
+</body>
+</html>
+{% endblock content %}

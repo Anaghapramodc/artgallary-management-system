@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%for a in artist %}
+
+<h5>{{a.Painting_name}}</h5>
+<h6> by </h6>
+<h6>{{a.mediam}} </h6>
+<h6>{{a.artcode}} </h6>
+<h6>{{a.size}} </h6>
+<p><img src="{{ a.image_url.url }}" alt="{{a.Painting_name}}"></p>
+<p>RS.{{a.price}}/-
+    {% if a.art_available %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available {% else %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Not Available {% endif %}
+
+
+    {% endfor %}
+</body>
+</html>

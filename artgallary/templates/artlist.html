@@ -1,0 +1,127 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("{% static 'img_1.png' %}");
+            background-repeat: repeat;
+            background-size: 100%; /* Adjust the size as needed */
+            background-position: center center;
+            filter: brightness(1.5); /* Adjust the brightness value as needed */
+        }
+.col-12,
+    .col-sm-6,
+    .col-md-4,
+    .col-lg-2 {
+        margin-bottom: 20px;
+        margin-right: 80px;/* Increase the margin-right value to increase the distance between cards */
+        margin-left: 0px;
+    }
+          .card {
+        width: 240px;
+        height: 590px;
+        margin-bottom: 20px;
+
+    }
+
+        img.card-img-top {
+            border: 1px red;
+            border-radius: 4px;
+            padding: 2px;
+            width: 220px;
+            height: 300px;
+        }
+
+        .card-title {
+            color: blue;
+        }
+
+        .card-content {
+            padding: 10px;
+        }
+
+        .card-price {
+            margin-top: 0px;
+            teext-color: black;
+        }
+
+        .card-available {
+            margin-top: 10px;
+        }
+
+        .card-view-button {
+            color: black;
+        }
+
+        .card-view-button a {
+            text-decoration: none;
+            font-color: black;
+        }
+        h4{
+        font-size: 30px;
+        font-color: red;
+        }
+          h5{
+        font-size: 20px;
+        font-color: red;
+        }
+         h7{
+        font-size: 20px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        {% for a in artist %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="{{ a.image_url.url }}" alt="{{ a.Painting_name }}" class="card-img-top">
+                        <h4 style="color:black;" class="card-title">{{ a.Painting_name }}</h4>
+                      <h5 style="color:black;" class="card-title">By
+                          <a href="{% url 'artist_profile' a.user.username %}">{{ a.user }}</a>
+                        <h5 style="color:black;" class="card-title">{{ a.mediam }}</h5>
+                        <h6 style="color:black;" class="card-title">  Size:{{ a.size }}</h6>
+                    </div>
+                    <div class="card-price" style="color: black; font-size: 20px;font-weight: bold;">
+                        RS.{{ a.price }} /-
+                    </div>
+       <div class="card-actions" style="display: flex; justify-content: space-between;">
+    <div class="card-available">
+        {% if a.art_available %}
+           <h7 style="color:blue;"> Available</h7>
+        {% else %}
+            <h7 style="color:red;"> Not Available</h7>
+        {% endif %}
+    </div>
+    <div class="card-view-button" style="margin-left: 10px;">
+    <a href="{% url 'art-view' a.id %}">
+        <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">View</button>
+    </a>
+</div>
+
+</div>
+
+
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
+
+{% endblock content %}

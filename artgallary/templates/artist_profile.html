@@ -1,0 +1,109 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS styles for the cart layout */
+        .cart {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .cart-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1px;
+        }
+
+        .cart-column {
+            flex-basis: 50%;
+        }
+
+        .cart-column img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .cart-column h3 {
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+
+        h16 {
+            font-size: 36px;
+            color: red;
+            font-weight: bold;
+            position: relative;
+        }
+         .img2 {
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            padding: 1px;
+            width: 300px;
+            height: 300px;
+        }
+        .img1{
+            border: 1px solid #ddd;
+            border-radius: 90%;
+            padding: 4px;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Part 1 - Cart Layout -->
+    <div class="cart" style="background-color:red;">
+        <div class="cart-row" >
+            <!-- First Column: Image -->
+            <div class="cart-column">
+                <img  class='img1' src="{{ profile.image_url.url }}" alt="{{ profile.name }}">
+            </div>
+            <!-- Second Column: Details -->
+            <div class="cart-column">
+                <h2>{{ profile.name }}</h2>
+                <h2>About:{{ profile.bio }}</h2>
+                <h2>Email:{{ profile.email }}</h2>
+                <h2>Mobile No:{{ profile.mobile_number }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Part 2 - Nested Cart Layout -->
+    {% for a in art %}
+    <div class="cart">
+        <div class="cart-row">
+            <!-- First Column: Image -->
+            <div class="cart-column">
+                <img  class='img2' src="{{ a.image_url.url }}" alt="{{ a.Painting_name }}">
+            </div>
+            <!-- Second Column: Details -->
+            <div class="cart-column">
+                <h3><a href="{% url 'art-view' a.id %}">{{ a.Painting_name }}</a></h3>
+                <h3>{{ a.mediam }}</h3>
+                <h3>{{ a.size }}</h3>
+                <h3>{{ a.price }}</h3>
+                {% if a.art_available %}
+                   <h3 style="color:blue;">Available</h3>
+                {% else %}
+                   <h3 style="color:red;">Not Available</h3>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
+
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .cart {
+    width: 1010px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -5;
+    }
+
+    .column {
+      flex-basis: 50%;
+      padding: 2px;
+    }
+
+    .image {
+      max-width: 55%;
+      height: auto;
+    }
+
+    .details {
+      margin-left: 20px;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin: 0;
+      left-margin: 2px;
+      align-items: left;
+    }
+
+    .details p {
+      margin: 5px 0;
+    }
+
+    .button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <div class="column">
+      <img class="image" src="{{ painting.image_url.url }}" alt="{{ painting.Painting_name }}">
+    </div>
+    <div class="column details">
+      <h2>Painting Name: {{ painting.Painting_name }}</h2>
+      <h2>Medium: {{ painting.mediam }}</h2>
+      <h2>Size: {{ painting.size }}</h2>
+      <h2>Price: {{ painting.price }}/-</h2>
+      <h2>Artist: {{ user_dtls.0.name }}</h2>
+      <h2>Artist email: {{ user_dtls.0.email }}</h2>
+      <h2>Mob-No: {{ user_dtls.0.mobile_number }}</h2>
+      <a href="{% url 'buy-location' pk=painting.id %}"><button class="button" type="button">Confirm</button></a>
+      <a href="{% url 'art-list' %}"><button class="button" type="button">Cancel</button></a>
+    </div>
+  </div>
+</body>
+</html>
+
+{% endblock content %}
+
+
+

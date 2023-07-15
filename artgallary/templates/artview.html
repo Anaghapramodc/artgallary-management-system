@@ -1,0 +1,144 @@
+{% extends 'home.html' %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .card-body {
+            width: 100%;
+            margin-left: -10%;
+            margin-top: 1%;
+        }
+
+        .card {
+            background-color: light;
+            height: 1050px;
+            width: 1537px;
+        }
+
+        img {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            padding: 3px;
+            width: 350px;
+            height: 500px;
+        }
+
+        h3 {
+            font-size: 60px;
+            margin-top: 0;
+             font-weight: 100;
+              color: red;
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-text {
+            margin-left: -50px;
+            color: #555;
+        }
+
+        .card-title {
+            font-size: 40px;
+            margin-bottom: 10px;
+             font-weight: 100;
+        }
+
+        .text-body-secondary {
+            font-size: 18px;
+            margin: 0;
+        }
+.text-body-secondary1{
+                 font-size: 22px;
+                  font-weight: 100;
+}
+
+        .card-price {
+            margin-top: 10px;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: white;
+            background-color: red;
+            border-color: red;
+        }
+        .btn:hover {
+            background-color: red;
+             color: white;
+        }
+        .card-title2{
+                font-weight: 100;
+        }
+          .card-available {
+            margin-top: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-body" style="width: 500; margin-left: -5%;  margin-right: 5%; margin-top: 1%;">
+        <div class="card mb-3" style="background-color: light-pink; height: 650px; width: 1400px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{artist.image_url.url}}" alt="{{artist_sell.Painting_name}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3 class=" card-title2">{{artist.Painting_name}}</h3>
+                            <p class="card-text1"><small class="text-body-secondary1">MEDIAM: {{artist.mediam}}</small></p>
+                            <p class="card-text1"><small class="text-body-secondary">ART-CODE: {{artist.artcode}}</small></p>
+                            <p class="card-text1"><small class="text-body-secondary">ART-SIZE: {{artist.size}}</small></p>
+                            <p class="card-text1"><small class="text-body-secondary3">ABOUT THIS ART: {{artist.description}}</small></p>
+                               <div class="card-available">
+                                    {% if artist.art_available %}
+                                       <h7 style="color:blue;"> Available</h7>
+                                    {% else %}
+                                        <h7 style="color:red;"> Not Available</h7>
+                                    {% endif %}
+                                </div>
+                            <div class="card-price">
+                                RS.{{ artist.price }} /-
+                            </div>
+                            <br>
+                            <p class="card-text">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'buy' user=artist.user pk=artist.id %}" class="btn btn-primary">Buy</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{% url 'add_to_cart' artist.id %}" class="btn btn-primary" onclick="alert('item added to cart')">Add to cart</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock content %}
