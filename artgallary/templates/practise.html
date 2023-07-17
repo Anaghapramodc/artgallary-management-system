@@ -106,11 +106,11 @@
     </style>
 </head>
 <body>
-  <h2>Set Your Time (hh:mm:ss)</h2>
-  <label for="timeInput">Enter time (hh:mm:ss):</label>
-  <input style="width:150px height:1000px align:center" type="text" id="timeInput">
-  <button onclick="startCountdown()">Start</button>
-  <h2 id="countdownDisplay">00:00:00</h2>
+      <h2>Set Your Time (hh:mm:ss)</h2>
+         <label for="timeInput">Enter time (hh:mm:ss):</label>
+        <input style="width:150px height:1000px align:center" type="text" id="timeInput">
+        <button onclick="startCountdown()">Start</button>
+           <h2 id="countdownDisplay">00:00:00</h2>
 
   <!-- Upload container -->
   <div id="uploadContainer" style="display: none;">
@@ -118,7 +118,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         <center>
         {% csrf_token %}
-    {{form.as_p}}
+         {{form.as_p}}
     <input class="button" type="submit"  onclick="alert('Result will inform through you mail id')" value="Submit">
         </center>
     </form>

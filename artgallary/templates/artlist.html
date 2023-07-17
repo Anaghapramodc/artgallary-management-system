@@ -91,7 +91,7 @@
                         <img src="{{ a.image_url.url }}" alt="{{ a.Painting_name }}" class="card-img-top">
                         <h4 style="color:black;" class="card-title">{{ a.Painting_name }}</h4>
                       <h5 style="color:black;" class="card-title">By
-                          <a href="{% url 'artist_profile' a.user.username %}">{{ a.user }}</a>
+                          <a href="{% url 'artist_profile' a.user %}">{{ a.user }}</a>
                         <h5 style="color:black;" class="card-title">{{ a.mediam }}</h5>
                         <h6 style="color:black;" class="card-title">  Size:{{ a.size }}</h6>
                     </div>

@@ -1,5 +1,6 @@
 
 
+
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -228,17 +229,24 @@ from .models import Buy
 class BuyLocation(CreateView):
     model = Buy
     context_object_name = 'painting'
-    fields = ['painting', 'user', 'name', 'email', 'phone_no', 'address_1', 'address_2', 'address_3', 'pin', 'nearest_city', 'online_payment', 'cash_on_delivery']
+    fields = ['painting', 'name', 'email', 'phone_no', 'address_1', 'address_2', 'address_3', 'pin', 'nearest_city', 'online_payment', 'cash_on_delivery']
     template_name = 'location.html'
 
     def form_valid(self, form):
         painting = form.cleaned_data['painting']
         online_payment = form.cleaned_data['online_payment']
         cash_on_delivery = form.cleaned_data['cash_on_delivery']
+
+
+        buy_instance = form.save(commit=False)
+        buy_instance.user = self.request.user  # Set the user based on the current request
+
         if online_payment:
+            buy_instance.save()
             return redirect('art-checkout', pk=painting.id)
         elif cash_on_delivery:
-            return redirect('home')
+            buy_instance.save()
+            return redirect('art-list')
         else:
             return super().form_valid(form)
 
@@ -251,4 +259,3 @@ class contact(CreateView):
 
 def review(request):
     return render(request, 'review.html')
-

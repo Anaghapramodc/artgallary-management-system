@@ -137,9 +137,7 @@
             {% endif %}
 
             {% if cash_on_delivery.True %}
-             <a href="{% url 'art-list'  %}" class=" button btn btn-outline-danger" onclick="alert('Your product has been delivered soon')">Buy</a>
-         <a class=" button btn btn-outline-danger" href="{% url 'remove_from_cart' art_id=cart_item.painting_name.id %}" onclick="alert('Item removed from cart')" style="size:20px;">Remove from cart</a>
-
+<a class="button btn btn-outline-danger" href="{% url 'art-list' %}" onclick="alert('Your product will be delivered soon')">Buy</a>
 
             {% endif %}
 
